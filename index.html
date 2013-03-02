@@ -1,0 +1,839 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google IO 2012</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/app-engine.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is App Engine?</h2>
+    </hgroup>
+    <p>&nbsp;</p>
+    <p>In few short sentences:</p>
+    <p>&nbsp;</p>
+    <article>
+      <ul class="build">
+        <li>Development platform in the cloud (PaaS)</li>
+        <li>Running directly on Google infrastructure</li>
+        <li>Automatic scaling</li>
+        <li>Almost no configuration</li>
+        <li>Automatic updates</li>
+        <li>No system administration</li>
+        <li>No performance tuning (almost)</li>
+        <li>Load balancing</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>Why App Engine?</h2>
+    </hgroup>
+    <article>
+      <p>Before we answer the question let's see how it's usually done....</p>
+    </article>
+  </slide>
+
+  <slide hidden>
+    <hgroup>
+      <h2>What do you need to start Internet business/site</h2>
+      <h3>The conventional way</h3>
+    </hgroup>
+    <article style="margin-top: 10px;" class="build">
+      <p>You need:</p>
+      <ul class="build^">
+        <li>Hosting</li>
+        <li>Server / VPS</li>
+        <li>Web server (Apache)</li>
+        <li>Database (MySQL / NoSQL)</li>
+        <li>Cache (Memcache)</li>
+        <li>Administrators / Programmers</li>
+      </ul>
+      <p>Then you have to:</p>
+      <ul class="build^">
+        <li>Configure it all</li>
+        <li>Maintain / Update</li>
+        <li>Reporting / Logs</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide hidden>
+    <article class="flexbox vcenter">
+      <img src="images/frustration.jpg" alt="Frustration" title="Frustration">
+      <footer class="source">source: Google image search :)</footer>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>App Engine Instances</h2>
+      <h3>How App Engine scales</h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Instances</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Instances are the basic building blocks of App Engine</li>
+        <li>Language runtime</li>
+        <li>The App Engine APIs</li>
+        <li>Your application's code</li>
+        <li>Memory (128MB - 1024MB)</li>
+        <li>Start up and shut down automatically based on current needs</li>
+        <li>Resident instances are also supported</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Instance types</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <p><b>Frontend Instances:</b></p>
+        <ul class="build">
+          <li>Running your code</li>
+          <li>Handle all requests by default, including task queues and cron jobs</li>
+          <li>Scaling dynamically based on the incoming requests</li>
+          <li>Limited in how long a request can run (60 seconds - 10 minutes)</li>
+        </ul>
+        <p><b>Backend Instances:</b></p>
+        <ul class="build">
+          <li>An instance whose live length is determined by your configuration</li>
+          <li>Limited scaling based on your settings</li>
+          <li>You can configure backends to work with task queues and cron jobs</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Instance and backend</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/instance.png" alt="App Engine Instances" title="App Engine Instances">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Instances</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/instances.png" alt="App Engine Instances" title="App Engine Instances">
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>App Engine Services</h2>
+      <h3>Building blocks of all App Engine applications</h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine High Level View</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/app-engine-blocks.png" alt="App Engine Blocks" title="App Engine Blocks">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Services</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li><b>Datastore API</b> - distributed NoSQL database based on BigTable</li>
+        <li><b>App Identity API</b> - identify itself and to assert its identity to external systems</li>
+        <li><b>Blobstore API</b> - serve data objects that are much larger than the size allowed for objects in the Datastore service</li>
+        <li><b>Capabilities API</b> - detect outages and scheduled downtime</li>
+        <li><b>Channel API</b> - creates a persistent connection between your JavaScript application and Google servers</li>
+        <li><b>Google Cloud Endpoints</b> - easy way to create API endpoints</li>
+        <li><b>Immages API</b> - image manipulation API</li>
+        <li><b>Logs API</b> - provides access to the application and request logs for your application</li>
+        <li><b>Mail API</b> - send and receive emails</li>
+        <li><b>Memcache API</b> - distributed in-memory data cache</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Services</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li><b>Multitenancy and the Namespaces API</b> - multitenancy in your applications</li>
+        <li><b>OAuth</b></li>
+        <li><b>Prospective Search</b></li>
+        <li><b>Search</b> - full text search</li>
+        <li><b>Task Queues API</b> - perform work initiated by a user request, outside of that request</li>
+        <li><b>URL Fetch</b> - communicate with other hosts over the Internet using HTTP and HTTPS requests</li>
+        <li><b>Users API</b> - authenticate users who have Google Accounts or OpenID identifiers</li>
+        <li><b>XMPP API</b> - send and receive instant messages to and from users of XMPP-compatible instant message services</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine High Level View</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/app-engine-blocks.png" alt="App Engine Blocks" title="App Engine Blocks">
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>App Engine Restrictions</h2>
+      <h3>You need these to scale!</h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Python VM restrictions</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>It is a "pure" Python environment</li>
+        <li>Cannot load Python modules with C code</li>
+        <li>App cannot write data to the local file system</li>
+        <li>App cannot make arbitrary network connections</li>
+        <li>Interpreter raises an <b>exception</b> when an app attempts to import a module from the standard library known to not work within the sandbox restrictions</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTTP request restrictions</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Each incoming HTTP request can be no larger than <b>32MB</b></li>
+        <li>Maximum response size <b>32MB</b></li>
+        <li>A request handler has <b>60 seconds</b> to generate and return a response</li>
+        <li>A task must finish executing and send an HTTP response value between 200–299 within <b>10 minutes</b> of the original request</li>
+        <li>App Engine is optimized for applications with short-lived requests <br> (<b>few hundred milliseconds</b>)</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore restrictions</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>No joins</li>
+        <li>No inequality filtering on multiple properties</li>
+        <li>No aggregate, grouping queries on large datasets</li>
+        <li>No filtering of data based on results of a subquery</li>
+        <li>All queries on App Engine are served by pre-built indexes</li>
+        <li>Maximum entity size: 1MB</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>App Engine Datastore</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Distributed partitioned Datastore (BigTable, NoSQL)</li>
+        <li>Schema less</li>
+        <li>Horizontal staling</li>
+        <li>Replicated and fault tolerant</li>
+        <li>Parallel / async processing</li>
+        <li>No joins - but there are model relations</li>
+        <li>Optimized for reading</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore &#8594; RDBMS</h2>
+      <h3>Terminology</h3>
+    </hgroup>
+    <article>
+      <div class="build">
+        <p>Table &#8594; Kinds</p>
+        <p>Row &#8594; Entity</p>
+        <p>Column &#8594; Property</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Entity</h2>
+    </hgroup>
+    <article>
+      <p>Objects in the App Engine Datastore are known as entities</p>
+      <ul class="build">
+        <li>An entity has one or more named properties</li>
+        <li>Each of which can have one or more values</li>
+        <li>Each entity is of a particular <b>kind</b></li>
+        <li>Each entity is identified by <b>key</b></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Entity Key</h2>
+    </hgroup>
+    <article>
+      <p>The key consists of the following components:</p>
+      <ul class="build">
+        <li>The entity's kind</li>
+        <li>An identifier, which can be either: <b>string</b> (key name) or <b>numeric ID</b></li>
+        <li>An optional <b>ancestor path</b> locating the entity within the Datastore hierarchy
+        <br>
+        <br>
+        <img src="images/ancestor.png" alt="ancestor" style="display: block; margin: auto auto">
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Model - Define</h2>
+    </hgroup>
+    <article class="mytm">
+      <pre class="prettyprint" data-lang="python">
+from google.appengine.ext import ndb
+
+class User(ndb.Model):
+  username = ndb.StringProperty(required=True)
+  password = ndb.StringProperty(required=True)
+  bio = ndb.TextProperty(default=None)
+  <b>attributes = ndb.StringProperty(repeated=True)
+  attribute_count =
+    ndb.ComputedProperty(lambda self: len(self.attributes))</b>
+  gender =
+    ndb.StringProperty(default='u', choices=set(['u', 'm', 'f']))
+  created = ndb.DateTimeProperty(auto_now_add=True)
+  updated = ndb.DateTimeProperty(auto_now=True)
+      </pre>
+      <p><a href="https://developers.google.com/appengine/docs/python/ndb/properties#types">Property Types</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Model - Initialize and Persist</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+user = User(username='thor', password='secret')
+user.bio = 'The god of thunder'
+user.attributes = ['Hammer', 'Strength', 'Awesomeness']
+user.gender = 'm'
+user.put()
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Model - Fetch / Update / Delete</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+# Fetch user
+user = User.query(User.username = 'thor').get()
+user = User.gql('WHERE username = :1', 'thor').get()
+
+if user:
+  user.bio = 'The god of thunder, lightning and storms'
+  user.put()
+...
+# Delete user
+user.delete()
+      </pre>
+      <a href="https://developers.google.com/appengine/docs/python/ndb/queries">NDB Queries</a>,
+      <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">GQL</a>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Model - get by key</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+<b>user_key = ndb.Key(User, 1)
+user = user_key.get()</b>
+
+if user:
+  # Update user
+  user.bio = 'The god of thunder, lightning and storms'
+  user.put()
+...
+# Delete user
+user_key.delete()
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Model - put async</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+if user:
+  # Update user
+  user.bio = 'The god of thunder, lightning and storms'
+  future = user.put_async()
+
+  # Do some work you have to do either way...
+  <b>future.get_result()</b>
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Async Calls</h2>
+    </hgroup>
+    <article style="margin-top: 25px;">
+      <ul>
+        <li>ndb.Key</li>
+        <li>
+          <ul>
+            <li>get_async()</li>
+            <li>delete_async()</li>
+          </ul>
+        </li>
+        <li>ndb.Model</li>
+        <li>
+          <ul>
+            <li>get_by_id_async()</li>
+            <li>get_or_insert_async()</li>
+            <li>put_async()</li>
+          </ul>
+        </li>
+        <li>ndb.Query</li>
+        <li>
+          <ul>
+            <li>count_async()</li>
+            <li>fetch_async()</li>
+            <li>fetch_page_async()</li>
+            <li>get_async()</li>
+            <li>map_async()</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Entity Hierarchy</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+user = User(username='thor', password='secret').put()
+UserAvatar(url='/avatar.png', parent=user.key).put()
+      </pre>
+      <p>Then later in the code you can do this:</p>
+      <pre class="prettyprint" data-lang="python">
+
+user_avatars = UserAvatar.query(ancestor==user.key).fetch(10)
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Datastore Query Cursors</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="python">
+
+users, next_cursor, more = \
+                  User.query(first_name=='thor').fetch_page(10)
+for user in users:
+  # Do something with user
+...
+if more and next_cursor:
+  # Pass next_cursor somewhere
+  User.query(first_name=='thor'). \
+                 fetch_page(10, start_cursor=next_cursor)
+      </pre>
+    </article>
+
+    <a href="https://developers.google.com/appengine/docs/python/ndb/queries#cursors">Cursors</a>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Other App Engine Services</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Memcache</h2>
+      <h3>Distributed, fast in-memory cache</h3>
+    </hgroup>
+    <pre class="prettyprint" data-lang="python">
+from google.appengine.api import memcache
+
+def get_data(key):
+  data = memcache.get(key)
+  if data is not None:
+    return data
+  else:
+    data = self.query_for_data(key)
+    memcache.add(key, data, 60)
+  return data
+    </pre>
+    <a href="https://developers.google.com/appengine/docs/python/memcache/overview">Memcache Docs</a>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>URL Fetch</h2>
+      <h3>HTTP Communication</h3>
+    </hgroup>
+
+    <pre class="prettyprint" data-lang="python">
+from google.appengine.api import urlfetch
+
+url = "http://www.google.com/"
+result = urlfetch.fetch(url)
+
+if result.status_code == 200:
+  doSomethingWithResult(result.content)
+    </pre>
+    <a href="https://developers.google.com/appengine/docs/python/urlfetch/overview">URL Fetch Docs</a>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Mail - Outgoing</h2>
+    </hgroup>
+
+    <article class="">
+      <pre class="prettyprint" data-lang="python">
+from google.appengine.api import mail
+
+subject = 'Where is my hammer?'
+body = 'If you took it again to show off I will $@*$#^&@*#&^ you!'
+sender_address = 'Thor &lt;thor@gods.com&gt;'
+recipient_address = 'rzajac@radioflag.com'
+
+mail.send_mail(sender_address, recepient_address, subject, body)
+      </pre>
+      <p>Body of an email can be HTML.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Mail - Incoming</h2>
+      <h3>Application can handle incoming emails</h3>
+    </hgroup>
+
+    <article class="mytm">
+      <ul>
+        <li>You can set up your app to receive incoming email at <b>string@appid.appspotmail.com</b> addresses.</li>
+        <li>Incoming email in App Engine works by posting HTTP requests containing MIME data to your app.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>XMPP - Chat</h2>
+    </hgroup>
+    <article class="mytm">
+      <h3>Outgoing</h3>
+      <pre class="prettyprint" data-lang="python">
+from google.appengine.api import xmpp
+
+chat_message_sent = False
+
+user_address = 'thor@gods.com'
+msg = 'Why would I take your hummer, I have my own!'
+status_code = xmpp.send_message(user_address, msg)
+
+chat_message_sent = (status_code == xmpp.NO_ERROR)
+
+if not chat_message_sent:
+    # Send an email message instead...
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>XMPP - Chat</h2>
+    </hgroup>
+    <article class="mytm">
+      <h3>Incoming</h3>
+      <ul>
+        <li>Your application can receive chat messages and take action on them</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Task Queues</h2>
+      <h3>Background processing</h3>
+    </hgroup>
+    <article class="mytm" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="python">
+import webapp2
+from google.appengine.api import taskqueue
+
+class LoginHandler(webapp2.RequestHandler):
+
+  def get(self):
+      self.response.out.write('Login template')
+
+  ...
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Task Queues</h2>
+      <h3>Background processing</h3>
+    </hgroup>
+    <article class="mytm" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="python">
+  ...
+  def post(self):
+      login_name = self.request.get('login_name')
+      password = self.request.get('password')
+      user = self.authenticate(login_name, password)
+      if user:
+        # Add the task to the queue.
+        <b>taskqueue.add(url='/user-analytics',
+            queue_name='LoginCounter',
+            params={'user_id': user.key.id()})</b>
+        self.redirect('/profile')
+
+      self.redirect('/login')
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Task Queues</h2>
+      <h3>Background processing</h3>
+    </hgroup>
+    <article class="" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="python">
+from google.appengine.ext import ndb
+
+class LoginCounter(ndb.Model):
+  count = ndb.IntegerProperty(default=0, indexed=False)
+
+...
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Task Queues</h2>
+      <h3>Background processing</h3>
+    </hgroup>
+    <article class="" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="python">
+...
+class LoginCounterHandler(webapp2.RequestHandler):
+  def post(self):
+      user_id = self.request.get('user_id')
+      key_name = 'user_login_counter:%s' % str(user_id)
+
+      @ndb.transactional
+      def txn():
+          <b>counter = LoginCounter.get_or_insert(key_name)</b>
+          counter.count += 1
+          counter.put()
+
+      txn()
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Task Queues</h2>
+      <h3>Background processing</h3>
+    </hgroup>
+    <article class="" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="yaml">
+        ###queue.yaml
+        queue:
+
+        - name: SendEmail
+          rate: 1/s
+
+        - name: LoginCounter
+          rate: 30/m
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Task Queue Administration</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/tasks.png" alt="App Engine Tasks" title="App Engine Tasks">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Task Queue Administration</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/tasks2.png" alt="App Engine Tasks" title="App Engine Tasks">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Cron</h2>
+      <h3>Regularly scheduled tasks</h3>
+    </hgroup>
+    <article class="" style="margin-top: 5px;">
+      <pre class="prettyprint" data-lang="yaml">
+        ###cron.yaml
+        cron:
+          - description: monday morning mailout
+            url: /mail/weekly
+            schedule: every monday 09:00
+            timezone: Australia/NSW
+
+          - description: new daily summary job
+            url: /tasks/summary
+            schedule: every 24 hours
+            target: version-2
+      </pre>
+
+      <p>The <b>target</b> specifies the version of your application on which to invoke the URL</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>App Engine Cron</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="images/cron.png" alt="App Engine Tasks" title="App Engine Tasks">
+
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Administration Panel</h2>
+      <h3><a href="http://appengine.google.com">Administration Panel</a></h3>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/app-engine-icon-128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Example program</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
