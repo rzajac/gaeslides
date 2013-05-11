@@ -4,6 +4,8 @@ This repository contains slides form the Krakow, GDG Meetup talk I gave about Go
 
 ## Example code for the talk:
 
+View slides [HERE](http://rzajac.github.io/gaeslides)
+
 The example code for the talk can be accessed: [HERE](https://github.com/rzajac/gae-examples)
 
 ## Slide deck
